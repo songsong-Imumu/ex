@@ -14,5 +14,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      
+      - name: Checkout
+      - uses: actions/checkout@main
+    
       - name: start app
-      - run: node server.js
+        run: node server.js
