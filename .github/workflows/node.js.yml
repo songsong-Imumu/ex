@@ -5,9 +5,8 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build:
@@ -15,4 +14,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - run: nodemon app.js
+      - name: start app
+      - run: node server.js
