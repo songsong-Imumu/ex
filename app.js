@@ -2,7 +2,9 @@ const superagent = require("superagent");
 const cheerio = require("cheerio");
 const fs = require("fs");
 
-const mainUrl = "https://weibo.com/2656274875/LgWUkqJqX?refer_flag=1001030103_";
+// const mainUrl = "https://info.zufe.edu.cn/szdw.htm";
+const mainUrl = "https://zhuanlan.zhihu.com/p/448915502";
+// const mainUrl = "https://weibo.com/2656274875/LgWUkqJqX#repost"
 
 let getData = (url) => {
   superagent.get(mainUrl).end((err, res) => {
@@ -13,20 +15,15 @@ let getData = (url) => {
     // 解析数据cheerio
     // let $ = cheerio.load(res.text, { decodeEntities: false });
     let $ = cheerio.load(res.text);
-    let data = [];
-    const listtimes = $(".vue-recycle-scroller__item-view");
+    const listtimes = $("p");
+    const data = [];
     listtimes.each(function (index, d) {
-      // const context = $(d).children()[0]
-      console.log(index);
+      // console.log(index, $(d).text());
+      data.push($(d).text());
     });
-    // const listItems = $("span");
-    // $('span').each(function (index, d) {
-    //   const children = $($(d).children()[0])
-    //   console.log(children);
-    //   console.log(index,$(d).text())
-    // });
+    console.log(data);
   });
-  console.log("return");
+  console.log("end function");
 };
 
 getData(mainUrl);
